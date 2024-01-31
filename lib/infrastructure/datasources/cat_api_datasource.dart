@@ -16,11 +16,15 @@ class CatApiDatasource implements CatsDatasource {
   Future<List<Cat>> getCats() async {
     try {
       final response = await dio.get('/breeds');
-      final List<dynamic> data = response.data;
-      final catsResponse =
-          data.map((json) => CatApiResponse.fromJson(json)).toList();
-      final Future<List<Cat>> cats = _getCatsFromApi(catsResponse);
-      return cats;
+      if (response.statusCode == 200) {
+        final List<dynamic> data = response.data;
+        final catsResponse =
+        data.map((json) => CatApiResponse.fromJson(json)).toList();
+        final Future<List<Cat>> cats = _getCatsFromApi(catsResponse);
+        return cats;
+      } else {
+        throw Exception('Error: ${response.statusCode}');
+      }
     } catch (exception) {
       throw Exception(exception);
     }
@@ -39,7 +43,11 @@ class CatApiDatasource implements CatsDatasource {
     try {
       if (referenceImageId.isEmpty) return '';
       final response = await dio.get('/images/$referenceImageId');
-      return response.data["url"];
+      if (response.statusCode == 200) {
+        return response.data["url"];
+      } else {
+        throw Exception('Error: ${response.statusCode}');
+      }
     } catch (exception) {
       throw Exception(exception);
     }
