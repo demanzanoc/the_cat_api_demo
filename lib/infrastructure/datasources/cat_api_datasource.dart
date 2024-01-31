@@ -5,6 +5,7 @@ import 'package:prueba_gatos/infrastructure/models/the_cat_api/cat_api_response.
 import '../mappers/cat_mapper.dart';
 
 class CatApiDatasource implements CatsDatasource {
+  final String errorMessage = 'Error getting data. Code:';
   final dio = Dio(
     BaseOptions(
       baseUrl: 'https://api.thecatapi.com/v1',
@@ -40,13 +41,15 @@ class CatApiDatasource implements CatsDatasource {
   }
 
   Future<String> _getUrlImage(String referenceImageId) async {
+    const urlImageNotFound =
+        'https://t3.ftcdn.net/jpg/02/61/08/76/360_F_261087622_8eRI0TAwDAyabS1b0Uifx1wKqHzA41r3.jpg';
     try {
-      if (referenceImageId.isEmpty) return '';
+      if (referenceImageId.isEmpty) return urlImageNotFound;
       final response = await dio.get('/images/$referenceImageId');
       if (response.statusCode == 200) {
         return response.data["url"];
       } else {
-        throw Exception('Error: ${response.statusCode}');
+        throw Exception('$errorMessage ${response.statusCode}');
       }
     } catch (exception) {
       throw Exception(exception);

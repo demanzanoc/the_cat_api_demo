@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prueba_gatos/presentation/providers/cats/cats_provider.dart';
+import 'package:prueba_gatos/presentation/widgets/cat_card.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
@@ -26,11 +27,11 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       body: cats.isEmpty
           ? const Center(child: CircularProgressIndicator())
           : ListView.builder(
-              itemCount: cats.length,
-              itemBuilder: (context, index) {
-                return Text(cats[index].breedName);
-              },
-            ),
+            itemCount: cats.length,
+            itemBuilder: (context, index) {
+              return CatCard(cat: cats[index]);
+            },
+          ),
     );
   }
 }
