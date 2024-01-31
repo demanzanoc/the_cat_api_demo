@@ -18,5 +18,4 @@ class CatsNotifier extends StateNotifier<List<Cat>> {
     final List<Cat> cats = await fetchCats();
     state = [...state, ...cats];
   }
-
 }

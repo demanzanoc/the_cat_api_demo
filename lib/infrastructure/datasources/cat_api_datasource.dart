@@ -14,12 +14,16 @@ class CatApiDatasource implements CatsDatasource {
 
   @override
   Future<List<Cat>> getCats() async {
-    final response = await dio.get('/breeds');
-    final List<dynamic> data = response.data;
-    final catsResponse =
-        data.map((json) => CatApiResponse.fromJson(json)).toList();
-    final Future<List<Cat>> cats = _getCatsFromApi(catsResponse);
-    return cats;
+    try {
+      final response = await dio.get('/breeds');
+      final List<dynamic> data = response.data;
+      final catsResponse =
+          data.map((json) => CatApiResponse.fromJson(json)).toList();
+      final Future<List<Cat>> cats = _getCatsFromApi(catsResponse);
+      return cats;
+    } catch (exception) {
+      throw Exception(exception);
+    }
   }
 
   Future<List<Cat>> _getCatsFromApi(List<CatApiResponse> catsResponse) async {
@@ -32,8 +36,12 @@ class CatApiDatasource implements CatsDatasource {
   }
 
   Future<String> _getUrlImage(String referenceImageId) async {
-    if (referenceImageId.isEmpty) return '';
-    final response = await dio.get('/images/$referenceImageId');
-    return response.data["url"];
+    try {
+      if (referenceImageId.isEmpty) return '';
+      final response = await dio.get('/images/$referenceImageId');
+      return response.data["url"];
+    } catch (exception) {
+      throw Exception(exception);
+    }
   }
 }

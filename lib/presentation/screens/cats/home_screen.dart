@@ -23,12 +23,14 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       appBar: AppBar(
         title: const Center(child: Text('Catbreeds')),
       ),
-      body: ListView.builder(
-        itemCount: cats.length,
-        itemBuilder: (context, index) {
-          return Text(cats[index].origin);
-        },
-      ),
+      body: cats.isEmpty
+          ? const Center(child: CircularProgressIndicator())
+          : ListView.builder(
+              itemCount: cats.length,
+              itemBuilder: (context, index) {
+                return Text(cats[index].breedName);
+              },
+            ),
     );
   }
 }
