@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prueba_gatos/presentation/providers/cats/cats_provider.dart';
-import 'package:prueba_gatos/presentation/widgets/cat_card.dart';
+import 'package:prueba_gatos/presentation/widgets/cats/cat_card.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});

@@ -1,5 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:prueba_gatos/domain/entities/cat.dart';
+import 'package:prueba_gatos/domain/entities/cats/cat.dart';
 import 'package:prueba_gatos/presentation/providers/cats/cats_repository_provider.dart';
 
 final catsProvider = StateNotifierProvider<CatsNotifier, List<Cat>>((ref) {

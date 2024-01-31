@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
-import 'package:prueba_gatos/domain/datasources/cats_datasource.dart';
-import 'package:prueba_gatos/domain/entities/cat.dart';
-import 'package:prueba_gatos/infrastructure/models/the_cat_api/cat_api_response.dart';
-import '../mappers/cat_mapper.dart';
+import 'package:prueba_gatos/domain/datasources/cats/cats_datasource.dart';
+import 'package:prueba_gatos/domain/entities/cats/cat.dart';
+import '../../mappers/cats/cat_mapper.dart';
+import '../../models/cats/the_cat_api/cat_api_response.dart';
 
 class CatApiDatasource implements CatsDatasource {
   final String errorMessage = 'Error getting data. Code:';

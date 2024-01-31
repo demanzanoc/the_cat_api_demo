@@ -1,5 +1,5 @@
-import 'package:prueba_gatos/infrastructure/models/the_cat_api/cat_api_response.dart';
-import '../../domain/entities/cat.dart';
+import '../../../domain/entities/cats/cat.dart';
+import '../../models/cats/the_cat_api/cat_api_response.dart';
 
 class CatMapper {
   static Cat catApiToEntity(CatApiResponse catResponse, String imageUrl) => Cat(
