@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:prueba_gatos/config/constants/environment.dart';
 import 'package:prueba_gatos/domain/datasources/cats/cats_datasource.dart';
 import 'package:prueba_gatos/domain/entities/cats/cat.dart';
 import '../../mappers/cats/cat_mapper.dart';
@@ -9,7 +10,7 @@ class CatApiDatasource implements CatsDatasource {
   final dio = Dio(
     BaseOptions(
       baseUrl: 'https://api.thecatapi.com/v1',
-      queryParameters: {'x-api-key': 'bda53789-d59e-46cd-9bc4-2936630fde39'},
+      queryParameters: {'x-api-key': Environment.theCatApiKey},
     ),
   );
 
